@@ -1,7 +1,7 @@
 ---
 title: "Lab 02 - Plastic waste"
-author: "Insert your name here"
-date: "Insert date here"
+author: "Steve"
+date: "04/26/2025"
 output: github_document
 ---
 
@@ -13,50 +13,59 @@ library(tidyverse)
 
 ```{r load-data, message=FALSE}
 plastic_waste <- read.csv("data/plastic-waste.csv")
+glimpse(plastic_waste)
 ```
 
 ## Exercises
 
 ### Exercise 1
 
-Remove this text, and add your answer for Exercise 1 here.
+Distribution
 
 ```{r plastic-waste-continent}
-# insert code here
+ggplot(plastic_waste, aes(x = plastic_waste_per_cap)) + geom_histogram(binwidth = 0.2)
+
+# finding the outlier
+plastic_waste %>%
+  filter(plastic_waste_per_cap > 3.5)
 ```
 
 ### Exercise 2
 
 ```{r plastic-waste-density}
-# insert code here
+ggplot(plastic_waste, aes(x = plastic_waste_per_cap, color = continent, fill = continent)) + geom_density(alpha = 0.5, adjust = 2)
 ```
 
 ### Exercise 3
 
-Remove this text, and add your answer for Exercise 3 here.
-
 ```{r plastic-waste-violin}
-# insert code here
+ggplot(
+  data = plastic_waste,
+  mapping = aes(
+    x = continent,
+    y = plastic_waste_per_cap
+  )
+) +
+  geom_violin()
+
 ```
 
 ### Exercise 4
 
-Remove this text, and add your answer for Exercise 4 here.
-
 ```{r plastic-waste-mismanaged}
-# insert code here
+ggplot(plastic_waste, aes(x = plastic_waste_per_cap, y = mismanaged_plastic_waste_per_cap)) + geom_point()
 ```
 
 ```{r plastic-waste-mismanaged-continent}
-# insert code here
+ggplot(plastic_waste, aes(x = plastic_waste_per_cap, y = mismanaged_plastic_waste_per_cap, color = continent)) + geom_point()
 ```
 
 ```{r plastic-waste-population-total}
-# insert code here
+ggplot(plastic_waste, aes(x = plastic_waste_per_cap, y = total_pop, color = continent)) + geom_point()
 ```
 
 ```{r plastic-waste-population-coastal}
-# insert code here
+ggplot(plastic_waste, aes(x = plastic_waste_per_cap, y = coastal_pop, color = continent)) + geom_point()
 ```
 
 ### Exercise 5
