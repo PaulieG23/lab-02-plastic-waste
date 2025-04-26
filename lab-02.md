@@ -124,8 +124,19 @@ ggplot(plastic_waste, aes(x = plastic_waste_per_cap, y = coastal_pop, color = co
 
 ### Exercise 5
 
-Remove this text, and add your answer for Exercise 5 here.
-
 ``` r
-# insert code here
+ggplot(plastic_waste %>% filter(plastic_waste_per_cap < 3), aes(y = plastic_waste_per_cap, x = coastal_pop/total_pop, color = continent)) + geom_point() + geom_smooth(aes(group = 1), method = "loess", color = "black", se = TRUE) + labs(x = "Costal population proportion", y = "Plastic waste per capita",  title = "Plastic Waste vs. Costal Population Proportion",
+  subtitle = "continent")
 ```
+
+    ## `geom_smooth()` using formula = 'y ~ x'
+
+    ## Warning: Removed 10 rows containing non-finite outside the scale range
+    ## (`stat_smooth()`).
+
+    ## Warning: Removed 10 rows containing missing values or values outside the scale range
+    ## (`geom_point()`).
+
+![](lab-02_files/figure-gfm/recreate-viz-1.png)<!-- --> Higher costal
+population proportion is associated with higher plastic waster per
+capita, but the relationship is not strong
